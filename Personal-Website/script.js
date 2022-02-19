@@ -1,12 +1,18 @@
 'use strict';
 
+const initialize = function () {
+  createDots();
+  activateDot(0);
+  goToSlide(0);
+};
+
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 const dotContainer = document.querySelector('.dots');
 
-btnLeft.addEventListener('click', function (e) {});
-btnRight.addEventListener('click', function (e) {});
+let curSlide = 0;
+const maxSlide = slides.length - 1;
 
 const createDots = function () {
   slides.forEach(function (_, i) {
@@ -27,4 +33,12 @@ const activateDot = function (slide) {
     .classList.add('dots__dot--active');
 };
 
-createDots();
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+initialize();
+btnLeft.addEventListener('click', function (e) {});
+btnRight.addEventListener('click', function (e) {});
