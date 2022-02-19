@@ -39,6 +39,41 @@ const goToSlide = function (slide) {
   );
 };
 
+const nextSlide = function () {
+  if (curSlide === maxSlide) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+
+  goToSlide(curSlide);
+  activateDot(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide;
+  } else {
+    curSlide--;
+  }
+
+  goToSlide(curSlide);
+  activateDot(curSlide);
+};
+
 initialize();
-btnLeft.addEventListener('click', function (e) {});
-btnRight.addEventListener('click', function (e) {});
+
+btnLeft.addEventListener('click', prevSlide);
+btnRight.addEventListener('click', nextSlide);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') prevSlide();
+  if (e.key === 'ArrowRight') nextSlide();
+});
+
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+    activateDot(slide);
+  }
+});
