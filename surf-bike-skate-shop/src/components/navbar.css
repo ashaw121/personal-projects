@@ -1,0 +1,19 @@
+.navbar {
+  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-link {
+  padding: 5px;
+}
+
+.link {
+  color: rgb(54, 133, 133);
+}
